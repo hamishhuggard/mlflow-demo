@@ -1,12 +1,12 @@
 from flask import Flask, request
+import json
 
 app = Flask(__name__)
 
 @app.route('/')
 def echo():
-    content = request.json
-    print(content)
+    print('beep')
     return {}
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='0.0.0.0')
