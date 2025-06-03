@@ -1,22 +1,24 @@
-# Datascience Skills
+# ML Engineering Skills
 
-According to Gemini, here's how I should prioritise my learning:
+## Skills to learn
 
-## Top priority:
-  - Kubernetes (Deeper Conceptual Understanding & Practical Application):
-    - Understand Pods, Deployments, Services, Ingress, and how they relate to deploying and scaling ML models. Learn about kubectl commands for managing resources.
-    - Why it's important: While cloud providers offer managed services (like EKS, AKS), the underlying concepts of Kubernetes are crucial. Many MLOps tools (like Kubeflow, Seldon) are built on Kubernetes.
-    - Difficulty: Medium to High
-  - Cloud ML Services (AWS SageMaker / Azure Machine Learning)
-    - AWS: Focus on SageMaker (Studio, Training Jobs, Endpoints for real-time inference, Batch Transform, Model Registry, Monitoring). Also understand how S3, ECR, and IAM integrate with SageMaker.
-    - Azure: Focus on Azure Machine Learning workspace (Experiments, Training, Endpoints for real-time inference, Pipelines, Model Registry, Monitoring). Understand integration with Azure Blob Storage, Azure Container Registry (ACR), and Azure Active Directory.
-    - Estimated Difficulty: Medium
-  - Apache Spark (PySpark focus):
-    - Understand Spark DataFrames, common transformations (joins, aggregations), and how to read/write from various data sources (CSV, Parquet, Delta Lake). Get familiar with SparkSession and the Spark ecosystem.
-    -  Spark is the industry standard for large-scale data manipulation and often integrates with ML frameworks (MLlib) and platforms like Databricks.
-    - Difficulty: Medium to High. Concepts like distributed computing and lazy evaluation can be tricky, but it's incredibly powerful.
+[According to Gemini](https://gemini.google.com/app/a8233c77cee25212?hl=en_GB), here's how I should prioritise my learning:
 
-## High Priority (Significant Impact, Build on Existing Strengths):
+### Top priority:
+- Kubernetes (Deeper Conceptual Understanding & Practical Application):
+  - Understand Pods, Deployments, Services, Ingress, and how they relate to deploying and scaling ML models. Learn about kubectl commands for managing resources.
+  - Why it's important: While cloud providers offer managed services (like EKS, AKS), the underlying concepts of Kubernetes are crucial. Many MLOps tools (like Kubeflow, Seldon) are built on Kubernetes.
+  - Difficulty: Medium to High
+- Cloud ML Services (AWS SageMaker / Azure Machine Learning)
+  - AWS: Focus on SageMaker (Studio, Training Jobs, Endpoints for real-time inference, Batch Transform, Model Registry, Monitoring). Also understand how S3, ECR, and IAM integrate with SageMaker.
+  - Azure: Focus on Azure Machine Learning workspace (Experiments, Training, Endpoints for real-time inference, Pipelines, Model Registry, Monitoring). Understand integration with Azure Blob Storage, Azure Container Registry (ACR), and Azure Active Directory.
+  - Estimated Difficulty: Medium
+- Apache Spark (PySpark focus):
+  - Understand Spark DataFrames, common transformations (joins, aggregations), and how to read/write from various data sources (CSV, Parquet, Delta Lake). Get familiar with SparkSession and the Spark ecosystem.
+  - Spark is the industry standard for large-scale data manipulation and often integrates with ML frameworks (MLlib) and platforms like Databricks.
+  - Difficulty: Medium to High. Concepts like distributed computing and lazy evaluation can be tricky, but it's incredibly powerful.
+
+### High Priority (Significant Impact, Build on Existing Strengths):
 - MLflow: 
     - MLflow Model Registry: Managing model versions, stages (Staging, Production), and approval workflows.
     - MLflow Projects: Packaging code for reproducible runs.
@@ -28,7 +30,7 @@ According to Gemini, here's how I should prioritise my learning:
     - Why it's important: Databricks is very popular for large-scale data and ML, often seen alongside Spark and MLflow. Many companies in Auckland (and globally) use it.
     - Difficulty: Medium. Learning Spark first helps. Hands-on labs are key here.
 
-## Medium Priority (Valuable Additions, Address Specific Gaps):
+### Medium Priority (Valuable Additions, Address Specific Gaps):
 - Data Lake and Data Warehouse Concepts (including ETL/ELT):
     - Focus: Understand the fundamental differences between data lakes and data warehouses (schema-on-read vs. schema-on-write, data types, use cases). Grasp the concepts of ETL (Extract, Transform, Load) and E
 - LT (Extract, Load, Transform) pipelines and when to use each.
@@ -39,7 +41,7 @@ According to Gemini, here's how I should prioritise my learning:
     - Why it's important: Reproducibility of experiments and data lineage are critical in MLOps. Your basic understanding is a great start.
     - Difficulty: Easy. DVC is conceptually straightforward once you grasp its core purpose. A few days of dedicated practice will solidify your understanding.
 
-## Lower Priority (Good to Know, but Not Always Core ML Engineering):
+### Lower Priority (Good to Know, but Not Always Core ML Engineering):
 - Weights & Biases (W&B) or Neptune.ai (Choose one to focus on):
     - Focus: Get proficient with one of these for experiment tracking and visualization. While MLflow is strong, W&B and Neptune offer more advanced visualization capabilities and collaborative features.
     - Why it's important: It shows flexibility and experience with various experiment tracking paradigms. It's a valuable skill for collaboration with data scientists.
@@ -48,6 +50,21 @@ According to Gemini, here's how I should prioritise my learning:
     - Focus: As an ML Engineer, your primary role isn't usually creating dashboards, but being able to connect to data sources (e.g., model logs, prediction outputs) and create basic visualizations of model performance or business impact can be a valuable soft skill.
     - Why it's important: While not core ML engineering, it aids in communicating results and monitoring. PowerBI might be slightly more prevalent in corporate environments that lean heavily into Microsoft.
     - Difficulty: Easy to Medium. Becoming proficient enough for ML-related dashboards will take some dedicated practice.
+
+
+## Cloud techs to learn
+
+| Technology Category | AWS Specifics (Examples) | Azure Specifics (Examples) | Learning Priority | Notes |
+| :------------------ | :----------------------- | :--------------------------- | :---------------- | :---- |
+| **ML Platform Services** | **SageMaker:** Studio, Training Jobs, Endpoints (Real-time, Batch), Model Registry, Pipelines, Clarify/Monitor. | **Azure Machine Learning:** Workspace, Compute (Instances/Clusters), Jobs (Training/Batch), Endpoints, Model Registry, Pipelines, Responsible AI Dashboard/Monitor. | **Highest** | This is the core for ML Engineers. Aim for deep proficiency in one, and a strong conceptual understanding of the other. These services cover the entire ML lifecycle. |
+| **Container Orchestration** | **EKS (Elastic Kubernetes Service):** Deploying applications, scaling, basic `kubectl` commands, networking (Load Balancers/Ingress). | **AKS (Azure Kubernetes Service):** Deploying applications, scaling, basic `kubectl` commands, networking (Load Balancers/Ingress). | **High** | Even if ML Platforms abstract K8s, understanding the underlying concepts and how to deploy your own services (like FastAPI) is crucial. |
+| **Cloud Storage** | **S3 (Simple Storage Service):** Buckets, objects, access control, versioning, lifecycle policies, S3 Glacier for archiving. | **Azure Blob Storage / Data Lake Storage Gen2:** Containers, blobs, access tiers, lifecycle management. | **High** | Fundamental for storing data, model artifacts, and logs. Essential for any ML pipeline. |
+| **Identity & Access Management** | **IAM (Identity and Access Management):** Users, Roles, Policies, Service Roles for ML services. | **Azure Active Directory (Azure AD):** Service Principals, Managed Identities, Roles, Role-Based Access Control (RBAC). | **High** | Crucial for securing your ML resources and pipelines. Understand least privilege. |
+| **Distributed Data Processing** | **EMR (Elastic MapReduce) with PySpark:** Running Spark jobs on managed clusters. | **Azure Databricks (built on Spark) / Azure Synapse Analytics (Spark Pools):** Running Spark workloads. | **High** | For handling large datasets, essential for feature engineering and large-scale model training. |
+| **Data Warehousing & Lakes** | **Redshift:** Managed data warehouse. **Glue:** ETL, Data Catalog. **Athena:** Serverless query for S3 data. **Lake Formation:** Data lake governance. | **Azure Synapse Analytics:** Unified analytics, data warehousing. **Azure Data Factory:** ETL/ELT orchestration. **Azure Data Lake Storage Gen2:** Scalable data lake. | **Medium** | Understanding data flow from raw to features is vital. Focus on the concepts and how these services facilitate them. |
+| **Infrastructure as Code (IaC)** | **Terraform (preferred for multi-cloud) / CloudFormation (AWS-specific).** | **Terraform (preferred for multi-cloud) / ARM Templates (Azure-specific).** | **Medium** | For reproducible and version-controlled infrastructure deployments, highly valued in production environments. |
+| **Serverless Compute** | **Lambda:** Event-driven functions, integrating with S3/API Gateway for simple ML tasks. | **Azure Functions:** Event-driven functions, integrating with Blob Storage/API Management. | **Medium** | Useful for lightweight automation, event triggers in MLOps pipelines, or simple inference endpoints. |
+| **Monitoring & Logging** | **CloudWatch:** Logs, metrics, alarms for EC2, Lambda, SageMaker. | **Azure Monitor:** Logs, metrics, alerts for Azure ML, AKS, Azure Functions. | **Medium** | Essential for observing the health and performance of your ML systems post-deployment. |
 
 ## Project outline
 Prioritize hands-on projects that integrate multiple tools from the higher priority tiers:
@@ -73,11 +90,28 @@ Spark is basically pandas for big data. It's distributed, fault tolerant, does l
 (Under the hood it's completely different to pandas. But the API is broadly simialr.)
 
 ## Docker concepts:
-- node = a physical (or virtual) server
-- pod ~= a set of containers for one node
-- deployment = process that runs or kills containers to meet specs
-- service ~= nginx. reverse proxy and load balancer.
-- ingress ~= routing URLs to specific services and SSL certification
+
+- Pod ~= a wrapper for a (non-self healing) container
+  - or multiple containers that share a storage and localhost
+- ReplicaSet: makes sure there are n identical pods running at all times
+- Deployment: a set of ReplicaSets
+  - eg, {v1, v2}
+  - v2 can be spun while v1 is spun down for zero downtime.
+- the pods exist within a virtual network within the cluster, and each has its own IP address
+  - in kind (k8s in docker), the cluster is inside a container
+  - in docker desktop, the cluster is inside a VM
+- Service provides a single IP address to all the pods in a Deployment/Replicaset/Pod
+  - ClusterIP does a basic load balancing within the cluster
+  - NodePort also gives the service a port to talk to the outside world
+  - LoadBalancer uses the cloud's load balancer to distribute traffice outside the cluster
+  - The Service operates on the TCP/IP level
+- Ingress exposes the cluster to the outside world via the HTTP/s layer
+  - host-based routing (api.app.com vs test.app.com)
+  - path-based routing (app.com/api vs app.com/test)
+  - SSL termination
+- StatefulSet ~= Deployment with shared storage (good for DB)
+- Job: creates one or more pods and ensures a sufficient number terminate
+- CronJob: job but it runs on a schedule
 
 ## Kubectl commands
 ```
@@ -114,3 +148,17 @@ kubectl rollout undo deployment/first-deployment
 | Azure Offering             | AWS Offering                  |
 | :------------------------- | :---------------------------- |
 | **Azure Kubernetes Service (AKS)** | **AWS Elastic Kubernetes Service (EKS)** |
+
+## EKS and AKS
+
+- Programatic development in Python involves two levels:
+  - Cloud SDK (boto3 or Azure SDK) for managing the _cluster_
+  - K8s python client (for managing resources _within_ the cluster, like pods, services, etc)
+- Azure:
+    - `azure-mgmt-containerservice` library
+    - `managed_cluster.create_or_update` to create or update a cluster
+    - `managed_cluster.get` 
+    - `managed_cluster.delete` 
+    - `managed_cluster.list_by_resource_group` to list clusters
+    - `managed_cluster.list_cluster_user_credentials` or `managed_cluster.list_cluster_admin_credentials` to obtain the `kubeconfig` for connecting to the clusters k8s API
+    - 
