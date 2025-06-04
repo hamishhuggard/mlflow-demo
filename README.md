@@ -1,4 +1,4 @@
-# ML Engineering Skills
+# Notes on ML Engineering
 
 ## Skills to learn
 
@@ -89,7 +89,9 @@ Then there's a "Lakehouse" which does something like keep the raw data in blob s
 Spark is basically pandas for big data. It's distributed, fault tolerant, does lazy execution, and handles analytics and ML.
 (Under the hood it's completely different to pandas. But the API is broadly simialr.)
 
-## Docker concepts:
+## Kubernetes 
+
+### Concepts:
 
 - Pod ~= a wrapper for a (non-self healing) container
   - or multiple containers that share a storage and localhost
@@ -113,17 +115,27 @@ Spark is basically pandas for big data. It's distributed, fault tolerant, does l
 - Job: creates one or more pods and ensures a sufficient number terminate
 - CronJob: job but it runs on a schedule
 
-## Kubectl commands
+### Kubectl commands
+Get a list of live pods:
 ```
 kubectl get pods
+```
+Get a list of live deployments
+```
 kubectl get deployments
+```
+Etc:
+```
 kubectl get services
 kubectl get ingress
 kubectl get all
+```
 
+```
 kubectl describe pod pod-1
 kubectl describe deployement deployment-1
 kubectl describe service service-1
+```
 
 kubectl apply -f deployment.yaml
 
@@ -161,4 +173,24 @@ kubectl rollout undo deployment/first-deployment
     - `managed_cluster.delete` 
     - `managed_cluster.list_by_resource_group` to list clusters
     - `managed_cluster.list_cluster_user_credentials` or `managed_cluster.list_cluster_admin_credentials` to obtain the `kubeconfig` for connecting to the clusters k8s API
-    - 
+
+## Joblib
+
+joblib is recommended over pickle for storing/loading with ml libraries because it's more efficient with NumPy arrays. 
+
+## Async functions
+
+The following has some slight inaccuracies in the language when i talk about the event loop, but I think conceptually it's sound
+
+- async functions give us i/o concurrency, but not multithreading
+- an async function can call sync functions (normal functions) or async functions
+- but a sync function cannot call async functions
+    - except via async.run(async_function)
+- await async_function() means "run async_function, and pause this coroutine until the async_function is done"
+- await async.gather(async_1(), async_2(), async_3()) means "run the async functions together, and pause this coroutine until they're all done"
+- under the hood what's actually happening is:
+- calling an async function creates a Coroutine object
+- await coroutine_1 means "add coroutine_1 to the event loop, block the currrent coroutine, and hand control over to the event loop to start running the next non-blocked coroutine"
+- async.create_task(coroutine_1) means "add coroutine_1 to the event loop and return a Task object")
+- await task_1 is the same as await coroutine_1
+- async.gather adds all the coroutines to the event loop then blocks the currenet coroutine
