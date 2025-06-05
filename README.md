@@ -1,5 +1,27 @@
 # Notes on ML Engineering
 
+This is an demo project to prove competence with modern machine learning / data tools.
+
+The project idea is simple: we will introduce errors into a corpus of text, and finetune an LLM to restore the original text.
+
+Our text corruption will be inspired by how DNA is corrupted:
+- *Deletions:* `hello world` becomes `hellorld`
+- *Substitutions:* `hello world` becomes `h3jso world`
+- *Insertions:* `hello world` becomes `hello wos8%srld`
+- *Duplications:* `hello world` becomes `hello world`
+- *Reversals:* `hello world` becomes `hello world`
+These corruptions would be very difficult to correct with traditional algorithms, but hopefully an LLM can achieve reasonable accuracy using context cues and learning subtle patterns.
+
+1. Data preparation
+2. Training the model
+3. Deploying the model
+4. Batch inference
+4. Data stream
+
+1. Data management
+- [01_data](01_data) We will use `PySpark` to generate the dataset and `dvc` to 
+- [02_dvc](01_dvc) PySpark
+
 ## Skills to learn
 
 [According to Gemini](https://gemini.google.com/app/a8233c77cee25212?hl=en_GB), here's how I should prioritise my learning:
