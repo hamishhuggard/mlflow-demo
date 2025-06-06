@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ml-deployment-eks
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ml-model-eks
+  template:
+    metadata:
+      labels:
+        app: my-model-eks
+    spec:
+      containers:
+      - name: model-server
+        image: my-model:latest
+        ports:
+          - contianerPort: 80
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "1Gi"
+          limits:
+            cpu: "1"
+            memory: "2Gi"
+            # for GPU:
+            # nvidia.com/gpu: 1
+

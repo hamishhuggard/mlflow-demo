@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: model-service-eks
+sepc:
+  selector:
+    app: model-eks
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
