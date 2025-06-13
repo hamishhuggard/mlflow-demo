@@ -16,10 +16,16 @@ This is an demo project to prove competence with modern machine learning / data 
     - Kubernetes
     - Azure ML
     - AWS sagemaker
+- AI Agent and RAG
+    - Langchain
 - Batch inference
+    - AWS Batch
+    - Azure Batch
     - Snowflake
 - Data streaming
-    - Kinesis
+    - AWS Kinesis, and Kinesis Analytics
+    - Azure Event Hubs, Azure Stream Analytics
+    - kinesis Data Analytics
 - DevOps
     - Using Git actions
 
@@ -37,7 +43,10 @@ But there's a problem: DNA is prone to the following [mutations](https://en.wiki
 
 These corruptions would be very difficult to correct with traditional algorithms. But large language models (LLMs) can take into account context, the relative likely of differnet words and phrases, and pick out subtle patterns. We will therefore finetune an LLM to restore text that has been subjected to mutations.
 
-After developing the model, we will deploy it as a mutation-correcting API, use cloud batch inference to work through a backlog of mutated text, and set up an ETL pipeline to restore and warehouse a data stream of mutated text.
+We'll want to deploy the model in two ways:
+1. As an API so that urgent mutation corrections can be queried immediately.
+2. As a data stream, which will be collected and batch-processed once a day for non-urgent queries. 
+
 
 ### Dataset
 
@@ -52,15 +61,18 @@ Because this is a demo project, to keep costs low we'll use the smallest base mo
 - We will use **Spark** to generate the corrupted dataset, and **dvc** to version control the data.
 2. Training the model
 - We'll use **pytorch** to fine tune the model.
-- We'll do some experiments locally with **mlflow** for experiment tracking.
-- Once we've found some good hyperparameters, we'll try training with **AWS Sagemaker** and **Azure ML**, and determine which one is cheaper.
-3. Deploying the model
-- We can deploy the model directly with **AWS Sagemaker** or **Azure ML**, but we'll try to find a cheaper approach:
+- We'll do some experiments locally **mlflow** for hyperparameter tuning.
+- Once we've found some good hyperparameters, we'll do the actual training with **AWS Sagemaker**
+3. Deploying the model API
+- We can deploy the model directly with **AWS Sagemaker**
 - We'll create an API with **FastPI** and put it in a **Docker** container.
 - We'll then create a **Kubernetes** cluster to create an API service that self-heals and can scale with demand.
-4. Batch inference
-- 
-5. Data stream
-- 
+5. Data streaming
+- We'll use **Amazon Kinesis Data Streams** for real-time data ingestion
+- once a day, we'll trigger a lamdba function to write the data stream as json lines to s3 - We'll then use AWS glue to extract out just the text content, and write as .txt to s3 
+- We'll then use sagemaker batch transform to transform the data to a corrected .txt file in s3 (or AWS batch?)
 6. DevOps
 - We'll also handle testing, type checking, and linting using **Github Actions**.
+
+
+Alternatively, we could use Azure with Azure ML (training), Azure batch (batch processing), Azure Events Hugs (streams). That's left as a reader exercise.
